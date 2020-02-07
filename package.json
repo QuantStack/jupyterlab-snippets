@@ -1,5 +1,5 @@
 {
-  "name": "jupyterlab_jupyterlab-code-snippets",
+  "name": "jupyterlab-code-snippets",
   "version": "0.1.0",
   "description": "Code Snippets Extension for JupyterLab",
   "keywords": [
