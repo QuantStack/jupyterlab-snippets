@@ -1,4 +1,6 @@
-from ._version import __version__
+import sys
+import os
+
 from .handlers import setup_handlers
 from .loader import SnippetsLoader
 
@@ -16,8 +18,13 @@ def load_jupyter_server_extension(nb_app):
     nb_app: notebook.notebookapp.NotebookApp
         Notebook application instance
     """
-    snippet_dir = nb_app.config.get('JupyterLabCodeSnippets', {}).get('snippet_dir', '')
-    # TODO: add snippets from jupyter paths?
+    default_user_dir = os.path.join(os.path.expanduser("~"), 'jupyterlab_code_snippets')
+    user_snippet_dir = nb_app.config.get('JupyterLabCodeSnippets', {}).get('snippet_dir', default_user_dir)
 
-    loader = SnippetsLoader(snippet_dir)
+    library_snippet_dir = os.path.join(sys.prefix, 'share', 'jupyter', 'jupyterlab_code_snippets')
+
+    loader = SnippetsLoader({
+        'User': user_snippet_dir,
+        'Libraries': library_snippet_dir})
+
     setup_handlers(nb_app.web_app, loader)

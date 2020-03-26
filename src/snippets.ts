@@ -5,7 +5,10 @@ import { ServerConnection } from "@jupyterlab/services";
 /**
  * The type for a Snippet.
  */
-export type Snippet = string[];
+export type Snippet = {
+  rootId: string,
+  path: string[]
+};
 
 /**
  * The Snippet Content interface
@@ -18,7 +21,7 @@ export interface SnippetContent {
  * List the available snippets.
  */
 export async function listSnippets() {
-  return requestAPI<Snippet[]>("list");
+  return requestAPI<{ [key: string]: string[][] }>("list");
 }
 
 /**
@@ -28,7 +31,7 @@ export async function listSnippets() {
 export async function fetchSnippet(snippet: Snippet) {
   let request: RequestInit = {
     method: 'POST',
-    body: JSON.stringify({ snippet })
+    body: JSON.stringify(snippet)
   };
   return requestAPI<SnippetContent>("get", request);
 }

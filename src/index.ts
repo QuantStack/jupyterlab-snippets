@@ -3,15 +3,13 @@ import {
   JupyterFrontEndPlugin
 } from "@jupyterlab/application";
 
-import { PathExt } from "@jupyterlab/coreutils";
-
 import { IMainMenu } from "@jupyterlab/mainmenu";
 
 import { INotebookTracker, NotebookActions } from "@jupyterlab/notebook";
 
 import { CommandRegistry } from '@lumino/commands';
 
-import { Menu } from '@lumino/widgets';
+import { MenuSvg } from '@jupyterlab/ui-components';
 
 import { listSnippets, Snippet, fetchSnippet } from "./snippets";
 
@@ -31,7 +29,7 @@ type Tree = Map<string, Tree>;
  * Convert the list of snippets a tree.
  * @param snippets The list of snippets.
  */
-function toTree(snippets: Snippet[]) {
+function toTree(snippets: string[][]) {
   const tree = new Map<string, Tree>();
   snippets.forEach(snippet => {
     let node = tree;
@@ -46,27 +44,27 @@ function toTree(snippets: Snippet[]) {
 }
 
 /**
- * Create a menu from a tree of snippets.
+ * Populate a menu from a tree of snippets.
+ * @param menu to populate.
  * @param commands The command registry.
  * @param tree The tree of snippets.
  * @param path The current path in the tree.
  */
-function createMenu(commands: CommandRegistry , tree: Tree, path: string[] = []) {
-  const menu = new Menu({ commands });
+function populateMenu(menu: MenuSvg, commands: CommandRegistry , rootId: string, tree: Tree, path: string[] = []) {
   for (const [name, map] of tree.entries()) {
     const fullpath = path.concat(name);
     if (map.size === 0) {
       menu.addItem({
         command: CommandIDs.open,
-        args: { label: name, path: fullpath }
+        args: { label: name, snippet: { rootId, path: fullpath} }
       });
     } else {
-      const submenu = createMenu(commands, map, path.concat(name));
+      const submenu = new MenuSvg({ commands })
+      populateMenu(submenu, commands, rootId, map, path.concat(name));
       submenu.title.label = name;
       menu.addItem({type: 'submenu', submenu});
     }
   }
-  return menu;
 }
 
 /**
@@ -91,13 +89,10 @@ const extension: JupyterFrontEndPlugin<void> = {
     }
 
     commands.addCommand(CommandIDs.open, {
-      label: args => {
-        const label = args['label'] as string;
-        return PathExt.basename(label, PathExt.extname(label));
-      },
+      label: args => args['label'] as string,
       execute: async args => {
-        const path = args['path'] as string[];
-        const response = await fetchSnippet(path);
+        const snippet = args['snippet'] as Snippet;
+        const response = await fetchSnippet(snippet);
         const content = response.content;
 
         if (!isEnabled()) {
@@ -114,10 +109,19 @@ const extension: JupyterFrontEndPlugin<void> = {
     });
 
     if (menu) {
-      const list = await listSnippets();
-      const snippetsMenu = createMenu(commands, toTree(list));
+      const snippets = await listSnippets();
+      const snippetsMenu = new MenuSvg({ commands });
       snippetsMenu.title.label = 'Code Snippets';
       menu.addMenu(snippetsMenu);
+
+      const libraryMenu = new MenuSvg({commands});
+      populateMenu(libraryMenu, commands, 'Libraries', toTree(snippets['Libraries']));
+      libraryMenu.title.label = 'Libraries';
+      snippetsMenu.addItem({type: 'submenu', submenu: libraryMenu});
+
+      snippetsMenu.addItem({type: 'separator'});
+
+      populateMenu(snippetsMenu, commands, 'User', toTree(snippets['User']));
     }
   }
 };

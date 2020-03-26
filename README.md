@@ -22,7 +22,9 @@ jupyter lab build
 
 ## Usage
 
-In `jupyter_notebook_config.py`:
+The default directory for snippets is `~/jupyterlab_code_snippets`.
+
+The directory can be changed in `jupyter_notebook_config.py`:
 
 ```python
 c.JupyterLabCodeSnippets.snippet_dir = "/path/to/snippets"

@@ -25,8 +25,7 @@ class GetSnippet(APIHandler):
     @tornado.gen.coroutine
     def post(self):
         data = self.get_json_body()
-        snippet = data['snippet']
-        content = self.loader.get_snippet_content(snippet)
+        content = self.loader.get_snippet_content(data)
         self.finish(json.dumps({
             "content": content
         }))
