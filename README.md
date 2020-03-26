@@ -22,11 +22,7 @@ jupyter lab build
 
 ## Usage
 
-In `jupyter_notebook_config.py`:
-
-```python
-c.JupyterLabCodeSnippets.snippet_dir = "/path/to/snippets"
-```
+Add snippets in `[jupyter_data_dir]/code_snippets` (see: https://jupyter.readthedocs.io/en/latest/projects/jupyter-directories.html#id2)
 
 In JupyterLab, use the "Code Snippets" menu to select the snippet:
 
