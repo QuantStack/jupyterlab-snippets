@@ -32,7 +32,9 @@ c.JupyterLabCodeSnippets.snippet_dir = "/path/to/snippets"
 
 In JupyterLab, use the "Code Snippets" menu to select the snippet:
 
-![screenshot](./screenshot.png)
+<img width="507" alt="Schermafbeelding 2020-03-26 om 10 40 10" src="https://user-images.githubusercontent.com/46192475/77632401-3ecd5e00-6f4e-11ea-99dd-9dada1d0967e.png">
+<br />
+<img width="359" alt="Schermafbeelding 2020-03-26 om 10 40 21" src="https://user-images.githubusercontent.com/46192475/77632415-4260e500-6f4e-11ea-8c3c-2cf99407398c.png">
 
 
 ## Troubleshoot
