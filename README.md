@@ -22,15 +22,11 @@ jupyter lab build
 
 ## Usage
 
-In `jupyter_notebook_config.py`:
-
-```python
-c.JupyterLabCodeSnippets.snippet_dir = "/path/to/snippets"
-```
+Add snippets in `[jupyter_data_dir]/code_snippets` (see: https://jupyter.readthedocs.io/en/latest/projects/jupyter-directories.html#id2)
 
 In JupyterLab, use the "Code Snippets" menu to select the snippet:
 
-![screenshot](./screenshot.png)
+<img width="398" alt="Schermafbeelding 2020-03-26 om 13 16 34" src="https://user-images.githubusercontent.com/46192475/77646139-40a21c00-6f64-11ea-9073-fe2d1052928f.png">
 
 
 ## Troubleshoot

@@ -16,8 +16,6 @@ def load_jupyter_server_extension(nb_app):
     nb_app: notebook.notebookapp.NotebookApp
         Notebook application instance
     """
-    snippet_dir = nb_app.config.get('JupyterLabCodeSnippets', {}).get('snippet_dir', '')
-    # TODO: add snippets from jupyter paths?
 
-    loader = SnippetsLoader(snippet_dir)
+    loader = SnippetsLoader()
     setup_handlers(nb_app.web_app, loader)
