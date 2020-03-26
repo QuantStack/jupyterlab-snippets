@@ -3,13 +3,22 @@ import {
   JupyterFrontEndPlugin
 } from "@jupyterlab/application";
 
+import { PathExt } from "@jupyterlab/coreutils";
+
 import { IMainMenu } from "@jupyterlab/mainmenu";
 
 import { INotebookTracker, NotebookActions } from "@jupyterlab/notebook";
 
 import { CommandRegistry } from '@lumino/commands';
 
-import { MenuSvg } from '@jupyterlab/ui-components';
+import {
+  MenuSvg,
+  pythonIcon,
+  terminalIcon,
+  textEditorIcon,
+  extensionIcon,
+  folderIcon,
+} from '@jupyterlab/ui-components';
 
 import { listSnippets, Snippet, fetchSnippet } from "./snippets";
 
@@ -62,6 +71,7 @@ function populateMenu(menu: MenuSvg, commands: CommandRegistry , rootId: string,
       const submenu = new MenuSvg({ commands })
       populateMenu(submenu, commands, rootId, map, path.concat(name));
       submenu.title.label = name;
+      submenu.title.icon = folderIcon;
       menu.addItem({type: 'submenu', submenu});
     }
   }
@@ -90,6 +100,16 @@ const extension: JupyterFrontEndPlugin<void> = {
 
     commands.addCommand(CommandIDs.open, {
       label: args => args['label'] as string,
+      icon: args => {
+        const ext = PathExt.extname(args['label'] as string);
+        if (ext === '.py') {
+          return pythonIcon;
+        }
+        if (ext === '.sh') {
+          return terminalIcon;
+        }
+        return textEditorIcon;
+      },
       execute: async args => {
         const snippet = args['snippet'] as Snippet;
         const response = await fetchSnippet(snippet);
@@ -117,6 +137,7 @@ const extension: JupyterFrontEndPlugin<void> = {
       const libraryMenu = new MenuSvg({commands});
       populateMenu(libraryMenu, commands, 'Libraries', toTree(snippets['Libraries']));
       libraryMenu.title.label = 'Libraries';
+      libraryMenu.title.icon = extensionIcon;
       snippetsMenu.addItem({type: 'submenu', submenu: libraryMenu});
 
       snippetsMenu.addItem({type: 'separator'});
