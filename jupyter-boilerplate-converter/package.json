@@ -1,0 +1,16 @@
+{
+  "name": "jupyter-boilerplate-converter",
+  "version": "1.0.0",
+  "description": "jupyter-boilerplate snippets converter",
+  "scripts": {
+    "convert": "node ./convert.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "license": "BSD-3-Clause",
+  "author": "QuantStack",
+  "devDependencies": {
+    "node-define": "^0.1.1",
+    "requirejs": "^2.3.6",
+    "sanitize-filename": "^1.6.3"
+  }
+}
