@@ -22,10 +22,10 @@ import {
 import { listSnippets, Snippet, fetchSnippet } from "./snippets";
 
 /**
- * The command IDs used by the code snippets plugin.
+ * The command IDs used by the snippets plugin.
  */
 namespace CommandIDs {
-  export const open = "code-snippets:open";
+  export const open = "snippets:open";
 }
 
 /**
@@ -130,7 +130,7 @@ const extension: JupyterFrontEndPlugin<void> = {
     if (menu) {
       const list = await listSnippets();
       const snippetsMenu = createMenu(commands, toTree(list));
-      snippetsMenu.title.label = 'Code Snippets';
+      snippetsMenu.title.label = 'Snippets';
       menu.addMenu(snippetsMenu);
     }
   }

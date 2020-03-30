@@ -2,7 +2,7 @@
 
 ![Github Actions Status](https://github.com/QuantStack/jupyterlab-snippets/workflows/Build/badge.svg)
 
-Code Snippets Extension for JupyterLab.
+Snippets Extension for JupyterLab.
 
 This extension is composed of a Python package named `jupyterlab-snippets`
 for the server extension and a NPM package named `jupyterlab-snippets`
@@ -22,11 +22,11 @@ jupyter lab build
 
 ## Usage
 
-Add snippets in `[jupyter_data_dir]/code_snippets` (see: https://jupyter.readthedocs.io/en/latest/projects/jupyter-directories.html#id2)
+Add snippets in `[jupyter_data_dir]/snippets` (see: https://jupyter.readthedocs.io/en/latest/projects/jupyter-directories.html#id2)
 
-In JupyterLab, use the "Code Snippets" menu to select the snippet:
+In JupyterLab, use the "Snippets" menu to select the snippet:
 
-<img width="398" alt="Schermafbeelding 2020-03-26 om 13 16 34" src="https://user-images.githubusercontent.com/46192475/77646139-40a21c00-6f64-11ea-9073-fe2d1052928f.png">
+<img width="570" alt="Schermafbeelding 2020-03-30 om 17 25 31" src="https://user-images.githubusercontent.com/46192475/77930697-8257fd00-72ab-11ea-8a77-36f45d6442d9.png">
 
 
 ## Troubleshoot
