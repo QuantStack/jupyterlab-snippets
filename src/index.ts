@@ -77,10 +77,10 @@ function createMenu(commands: CommandRegistry , tree: Tree, path: string[] = [])
 }
 
 /**
- * Initialization data for the jupyterlab-code-snippets extension.
+ * Initialization data for the jupyterlab-snippets extension.
  */
 const extension: JupyterFrontEndPlugin<void> = {
-  id: "jupyterlab-code-snippets",
+  id: "jupyterlab-snippets",
   autoStart: true,
   optional: [IMainMenu, INotebookTracker],
   activate: async (

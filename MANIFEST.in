@@ -2,11 +2,11 @@ include LICENSE
 include README.md
 
 include setupbase.py
-include jupyter-config/jupyterlab-code-snippets.json
+include jupyter-config/jupyterlab-snippets.json
 
 include package.json
 include ts*.json
-include jupyterlab-code-snippets/labextension/*.tgz
+include jupyterlab-snippets/labextension/*.tgz
 
 # Javascript files
 graft src
