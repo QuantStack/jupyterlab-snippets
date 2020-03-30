@@ -5,7 +5,7 @@ from .loader import SnippetsLoader
 
 def _jupyter_server_extension_paths():
     return [{
-        'module': 'jupyterlab-code-snippets'
+        'module': 'jupyterlab-snippets'
     }]
 
 

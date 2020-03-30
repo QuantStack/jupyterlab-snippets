@@ -1,11 +1,11 @@
-# jupyterlab-code-snippets
+# jupyterlab-snippets
 
-![Github Actions Status](https://github.com/QuantStack/jupyterlab-code-snippets/workflows/Build/badge.svg)
+![Github Actions Status](https://github.com/QuantStack/jupyterlab-snippets/workflows/Build/badge.svg)
 
 Code Snippets Extension for JupyterLab.
 
-This extension is composed of a Python package named `jupyterlab-code-snippets`
-for the server extension and a NPM package named `jupyterlab-code-snippets`
+This extension is composed of a Python package named `jupyterlab-snippets`
+for the server extension and a NPM package named `jupyterlab-snippets`
 for the frontend extension.
 
 ## Requirements
@@ -16,7 +16,7 @@ for the frontend extension.
 ## Install
 
 ```bash
-pip install jupyterlab-code-snippets
+pip install jupyterlab-snippets
 jupyter lab build
 ```
 
@@ -62,12 +62,12 @@ The `jlpm` command is JupyterLab's pinned version of
 
 ```bash
 # Clone the repo to your local environment
-# Move to jupyterlab-code-snippets directory
+# Move to jupyterlab-snippets directory
 # Install the server extension
 pip install -e .
 
 # Register the server extension
-jupyter serverextension enable --py jupyterlab-code-snippets
+jupyter serverextension enable --py jupyterlab-snippets
 
 # Install the dependencies
 jlpm
@@ -98,6 +98,6 @@ jupyter lab --watch
 ### Uninstall
 
 ```bash
-pip uninstall jupyterlab-code-snippets
-jupyter labextension uninstall jupyterlab-code-snippets
+pip uninstall jupyterlab-snippets
+jupyter labextension uninstall jupyterlab-snippets
 ```

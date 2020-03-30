@@ -1,5 +1,5 @@
 """
-Setup Module to setup Python Handlers for the jupyterlab-code-snippets extension.
+Setup Module to setup Python Handlers for the jupyterlab-snippets extension.
 """
 import os
 
@@ -12,7 +12,7 @@ import setuptools
 HERE = os.path.abspath(os.path.dirname(__file__))
 
 # The name of the project
-name="jupyterlab-code-snippets"
+name="jupyterlab-snippets"
 
 # Ensure a valid python version
 ensure_python(">=3.6")
@@ -36,7 +36,7 @@ package_data_spec = {
 data_files_spec = [
     ("share/jupyter/lab/extensions", lab_path, "*.tgz"),
     ("etc/jupyter/jupyter_notebook_config.d",
-     "jupyter-config", "jupyterlab-code-snippets.json"),
+     "jupyter-config", "jupyterlab-snippets.json"),
 ]
 
 cmdclass = create_cmdclass("jsdeps",
@@ -55,7 +55,7 @@ with open("README.md", "r") as fh:
 setup_args = dict(
     name=name,
     version=version,
-    url="https://github.com/QuantStack/jupyterlab-code-snippets",
+    url="https://github.com/QuantStack/jupyterlab-snippets",
     author="QuantStack",
     description="Code Snippets Extension for JupyterLab",
     long_description=long_description,
