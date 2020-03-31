@@ -28,6 +28,11 @@ In JupyterLab, use the "Snippets" menu to select the snippet:
 
 <img width="570" alt="Schermafbeelding 2020-03-30 om 17 25 31" src="https://user-images.githubusercontent.com/46192475/77930697-8257fd00-72ab-11ea-8a77-36f45d6442d9.png">
 
+## Convert snippets from jupyter-boilerplate format
+
+See [jupyter-boilerplate-converter](jupyter-boilerplate-converter/README.md) on how to convert snippets from the
+[jupyter-boilerplate](https://github.com/moble/jupyter_boilerplate) classic notebook extension (not available for
+JupyterLab) to jupyterlab-snippets.
 
 ## Troubleshoot
 
