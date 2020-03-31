@@ -24,6 +24,26 @@ jupyter lab build
 
 Add snippets in `[jupyter_data_dir]/snippets` (see: https://jupyter.readthedocs.io/en/latest/projects/jupyter-directories.html#id2)
 
+To find the Jupyter data directory, run:
+```bash
+$ jupyter --path
+```
+This will for example show the following list on macOS:
+```
+config:
+    /Users/<username>/.jupyter
+    ...
+data:
+    /Users/<username>/Library/Jupyter
+    /Users/<username>/miniconda3/envs/<envname>/share/jupyter
+    ...
+runtime:
+    ...
+```
+
+Use the first directory listed under `data:` to add files to, these become snippets in the menu. Each file contains one
+snippet. Directories can be used to organize the snippet files and will become submenu's in the menu.
+
 In JupyterLab, use the "Snippets" menu to select the snippet:
 
 <img width="570" alt="Schermafbeelding 2020-03-30 om 17 25 31" src="https://user-images.githubusercontent.com/46192475/77930697-8257fd00-72ab-11ea-8a77-36f45d6442d9.png">
