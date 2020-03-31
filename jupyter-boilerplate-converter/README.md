@@ -1,7 +1,7 @@
 # jupyter-boilerplate-converter
 
-Convert snippets from the [jupyter-boilerplate](https://github.com/moble/jupyter_boilerplate)
-extension to [jupyterlab-snippets](../README.md).
+Convert snippets from the [jupyter-boilerplate](https://github.com/moble/jupyter_boilerplate) classic notebook
+extension (not available for JupyterLab) to [jupyterlab-snippets](../README.md).
 
 ## Usage
 

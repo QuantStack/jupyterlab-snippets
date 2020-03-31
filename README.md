@@ -30,7 +30,9 @@ In JupyterLab, use the "Snippets" menu to select the snippet:
 
 ## Convert snippets from jupyter-boilerplate format
 
-See [jupyter-boilerplate-converter](jupyter-boilerplate-converter/README.md)
+See [jupyter-boilerplate-converter](jupyter-boilerplate-converter/README.md) on how to convert snippets from the
+[jupyter-boilerplate](https://github.com/moble/jupyter_boilerplate) classic notebook extension (not available for
+JupyterLab) to jupyterlab-snippets.
 
 ## Troubleshoot
 
