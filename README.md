@@ -1,6 +1,7 @@
 # jupyterlab-snippets
 
 ![Github Actions Status](https://github.com/QuantStack/jupyterlab-snippets/workflows/Build/badge.svg)
+[![Version](https://img.shields.io/pypi/v/jupyterlab-snippets.svg)](https://pypi.python.org/project/jupyterlab-snippets)
 
 Snippets Extension for JupyterLab.
 
