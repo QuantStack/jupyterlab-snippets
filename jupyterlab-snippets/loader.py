@@ -14,7 +14,7 @@ class SnippetsLoader:
     def collect_snippets(self):
         snippets = []
         for root_path in self.snippet_paths:
-            for dirpath, dirnames, filenames in os.walk(root_path):
+            for dirpath, dirnames, filenames in os.walk(root_path, followlinks=True):
                 for f in filenames:
                     fullpath = PurePath(dirpath).relative_to(root_path).joinpath(f)
 
