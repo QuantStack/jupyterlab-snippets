@@ -19,14 +19,11 @@ npm run convert ./jupyter_boilerplate/snippets_submenus_python/h5py.js $SNIPPET_
 npm run convert ./jupyter_boilerplate/snippets_submenus_python/numba.js $SNIPPET_DIR .py
 npm run convert ./jupyter_boilerplate/snippets_submenus_python/sympy.js $SNIPPET_DIR .py
 
-cd ..
+cd ../binder
 
 ln -s $SNIPPET_DIR snippets_symlink
 
 # prepare Jupyter Lab
-
-cp binder/empty.ipynb .
-jupyter lab workspaces import binder/default.json
 
 jupyter lab build
 
