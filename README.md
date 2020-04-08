@@ -2,6 +2,7 @@
 
 ![Github Actions Status](https://github.com/QuantStack/jupyterlab-snippets/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/pypi/v/jupyterlab-snippets.svg)](https://pypi.python.org/project/jupyterlab-snippets)
+[![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyterlab-snippets.svg)](https://anaconda.org/conda-forge/jupyterlab-snippets)
 
 Snippets Extension for JupyterLab.
 
@@ -16,8 +17,21 @@ for the frontend extension.
 
 ## Install
 
+Using conda:
+
+```
+conda install -c conda-forge jupyterlab-snippets
+```
+
+Using pip:
+
 ```bash
 pip install jupyterlab-snippets
+```
+
+Rebuild JupyterLab:
+
+```bash
 jupyter lab build
 ```
 
