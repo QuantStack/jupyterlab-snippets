@@ -3,7 +3,7 @@
 ![Github Actions Status](https://github.com/QuantStack/jupyterlab-snippets/workflows/Build/badge.svg)
 [![Version](https://img.shields.io/pypi/v/jupyterlab-snippets.svg)](https://pypi.python.org/project/jupyterlab-snippets)
 [![Conda Version](https://img.shields.io/conda/vn/conda-forge/jupyterlab-snippets.svg)](https://anaconda.org/conda-forge/jupyterlab-snippets)
-[![Binder](https://mybinder.org/badge_logo.svg.svg)](https://mybinder.org/v2/gh/QuantStack/jupyterlab-snippets/stable?urlpath=lab/workspaces/default)
+[![Binder](https://mybinder.org/badge_logo.svg)](https://mybinder.org/v2/gh/QuantStack/jupyterlab-snippets/stable?urlpath=lab/tree/binder/notebook.ipynb)
 
 Snippets Extension for JupyterLab.
 
