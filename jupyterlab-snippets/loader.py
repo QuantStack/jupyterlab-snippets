@@ -15,6 +15,11 @@ class SnippetsLoader:
         snippets = []
         for root_path in self.snippet_paths:
             for dirpath, dirnames, filenames in os.walk(root_path, followlinks=True):
+                # Remove hidden folder
+                for folder_i, folder in enumerate(dirnames):
+                    if folder.startswith("."):
+                        dirnames.pop(folder_i)
+
                 for f in filenames:
                     fullpath = PurePath(dirpath).relative_to(root_path).joinpath(f)
 
