@@ -15,7 +15,7 @@ class SnippetsLoader:
         snippets = []
         for root_path in self.snippet_paths:
             for dirpath, dirnames, filenames in os.walk(root_path, followlinks=True):
-                # Remove hidden folder                
+                # Remove hidden folder
                 to_remove = [folder for folder in dirnames if folder.startswith(".")]
                 for folder in to_remove:
                     dirnames.remove(folder)
