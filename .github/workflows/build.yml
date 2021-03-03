@@ -52,7 +52,7 @@ jobs:
         jlpm run eslint:check
         python -m pip install .
 
-        jupyter server extension list 2>&1 | grep -ie "jupyterlab-snippets.*OK"
-
+        jupyter server extension list 2>&1 | grep -ie "jupyterlab_snippets.*OK"
         jupyter labextension list 2>&1 | grep -ie "jupyterlab-snippets.*OK"
+
         python -m jupyterlab.browser_check
