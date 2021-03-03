@@ -1,6 +1,6 @@
-import { URLExt } from "@jupyterlab/coreutils";
+import { URLExt } from '@jupyterlab/coreutils';
 
-import { ServerConnection } from "@jupyterlab/services";
+import { ServerConnection } from '@jupyterlab/services';
 
 /**
  * The type for a Snippet.
@@ -10,27 +10,27 @@ export type Snippet = string[];
 /**
  * The Snippet Content interface
  */
-export interface SnippetContent {
+export interface ISnippetContent {
   content: string;
 }
 
 /**
  * List the available snippets.
  */
-export async function listSnippets() {
-  return requestAPI<Snippet[]>("list");
+export async function listSnippets(): Promise<Snippet[]> {
+  return requestAPI<Snippet[]>('list');
 }
 
 /**
  * Fetch a snippet given its path.
  * @param snippet The path of the snippet to fetch.
  */
-export async function fetchSnippet(snippet: Snippet) {
-  let request: RequestInit = {
+export async function fetchSnippet(snippet: Snippet): Promise<ISnippetContent> {
+  const request: RequestInit = {
     method: 'POST',
     body: JSON.stringify({ snippet })
   };
-  return requestAPI<SnippetContent>("get", request);
+  return requestAPI<ISnippetContent>('get', request);
 }
 
 /**
@@ -41,15 +41,11 @@ export async function fetchSnippet(snippet: Snippet) {
  * @returns The response body interpreted as JSON
  */
 async function requestAPI<T>(
-  endPoint: string = "",
+  endPoint = '',
   init: RequestInit = {}
 ): Promise<T> {
   const settings = ServerConnection.makeSettings();
-  const requestUrl = URLExt.join(
-    settings.baseUrl,
-    "snippets",
-    endPoint
-  );
+  const requestUrl = URLExt.join(settings.baseUrl, 'snippets', endPoint);
 
   let response: Response;
   try {
