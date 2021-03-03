@@ -1,7 +1,7 @@
 {
   "NotebookApp": {
     "nbserver_extensions": {
-      "jupyterlab-snippets": true
+      "jupyterlab_snippets": true
     }
   }
 }

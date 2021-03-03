@@ -1,8 +1,10 @@
 *.bundle.*
 lib/
 node_modules/
+*.egg-info/
 .ipynb_checkpoints
 *.tsbuildinfo
+jupyterlab_snippets/labextension
 
 # Created by https://www.gitignore.io/api/python
 # Edit at https://www.gitignore.io/?templates=python
@@ -32,7 +34,6 @@ var/
 wheels/
 pip-wheel-metadata/
 share/python-wheels/
-*.egg-info/
 .installed.cfg
 *.egg
 MANIFEST
@@ -106,6 +107,9 @@ dmypy.json
 .pyre/
 
 # End of https://www.gitignore.io/api/python
+
+# OSX files
+.DS_Store
 
 yarn.lock
 .vscode
