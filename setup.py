@@ -16,9 +16,10 @@ import setuptools
 HERE = Path(__file__).parent.resolve()
 
 # The name of the project
-name = "jupyterlab_snippets"
+name = "jupyterlab-snippets"
+package = name.replace("-", "_")
 
-lab_path = (HERE / name / "labextension")
+lab_path = (HERE / package / "labextension")
 
 # Representative files that should exist after a successful build
 jstargets = [
@@ -26,7 +27,7 @@ jstargets = [
 ]
 
 package_data_spec = {
-    name: ["*"],
+    package: ["*"],
 }
 
 labext_name = "jupyterlab-snippets"
@@ -60,7 +61,7 @@ long_description = (HERE / "README.md").read_text()
 pkg_json = json.loads((HERE / "package.json").read_bytes())
 
 setup_args = dict(
-    name=name,
+    name=package,
     version=pkg_json["version"],
     url=pkg_json["homepage"],
     author=pkg_json["author"]["name"],
