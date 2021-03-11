@@ -1,13 +1,13 @@
 import {
   JupyterFrontEnd,
   JupyterFrontEndPlugin
-} from "@jupyterlab/application";
+} from '@jupyterlab/application';
 
-import { PathExt } from "@jupyterlab/coreutils";
+import { PathExt } from '@jupyterlab/coreutils';
 
-import { IMainMenu } from "@jupyterlab/mainmenu";
+import { IMainMenu } from '@jupyterlab/mainmenu';
 
-import { INotebookTracker, NotebookActions } from "@jupyterlab/notebook";
+import { INotebookTracker, NotebookActions } from '@jupyterlab/notebook';
 
 import { CommandRegistry } from '@lumino/commands';
 
@@ -16,16 +16,16 @@ import {
   pythonIcon,
   terminalIcon,
   textEditorIcon,
-  folderIcon,
+  folderIcon
 } from '@jupyterlab/ui-components';
 
-import { listSnippets, Snippet, fetchSnippet } from "./snippets";
+import { listSnippets, Snippet, fetchSnippet } from './snippets';
 
 /**
  * The command IDs used by the snippets plugin.
  */
 namespace CommandIDs {
-  export const open = "snippets:open";
+  export const open = 'snippets:open';
 }
 
 /**
@@ -46,7 +46,7 @@ function toTree(snippets: Snippet[]) {
         node.set(part, new Map<string, Tree>());
       }
       node = node.get(part);
-    })
+    });
   });
   return tree;
 }
@@ -57,7 +57,11 @@ function toTree(snippets: Snippet[]) {
  * @param tree The tree of snippets.
  * @param path The current path in the tree.
  */
-function createMenu(commands: CommandRegistry , tree: Tree, path: string[] = []) {
+function createMenu(
+  commands: CommandRegistry,
+  tree: Tree,
+  path: string[] = []
+) {
   const menu = new MenuSvg({ commands });
   for (const [name, map] of tree.entries()) {
     const fullpath = path.concat(name);
@@ -70,7 +74,7 @@ function createMenu(commands: CommandRegistry , tree: Tree, path: string[] = [])
       const submenu = createMenu(commands, map, path.concat(name));
       submenu.title.label = name;
       submenu.title.icon = folderIcon;
-      menu.addItem({type: 'submenu', submenu});
+      menu.addItem({ type: 'submenu', submenu });
     }
   }
   return menu;
@@ -80,7 +84,7 @@ function createMenu(commands: CommandRegistry , tree: Tree, path: string[] = [])
  * Initialization data for the jupyterlab-snippets extension.
  */
 const extension: JupyterFrontEndPlugin<void> = {
-  id: "jupyterlab-snippets",
+  id: 'jupyterlab-snippets',
   autoStart: true,
   optional: [IMainMenu, INotebookTracker],
   activate: async (
@@ -95,7 +99,7 @@ const extension: JupyterFrontEndPlugin<void> = {
         notebookTracker?.currentWidget !== null &&
         notebookTracker?.currentWidget === app.shell.currentWidget
       );
-    }
+    };
 
     commands.addCommand(CommandIDs.open, {
       label: args => args['label'] as string,

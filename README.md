@@ -30,7 +30,7 @@ Using pip:
 pip install jupyterlab-snippets
 ```
 
-Rebuild JupyterLab:
+If you use JupyterLab 2.x, you will have to rebuild JupyterLab with:
 
 ```bash
 jupyter lab build
@@ -93,9 +93,9 @@ jupyter lab clean
 jupyter lab build
 ```
 
-## Contributing
+## Development Install
 
-### Development Install
+Note: You will need NodeJS to build the extension package.
 
 The `jlpm` command is JupyterLab's pinned version of
 [yarn](https://yarnpkg.com/) that is installed with JupyterLab. You may use
@@ -103,42 +103,34 @@ The `jlpm` command is JupyterLab's pinned version of
 
 ```bash
 # Clone the repo to your local environment
-# Move to jupyterlab-snippets directory
-# Install the server extension
+# Change directory to the jupyterlab-snippets directory
+# Install package in development mode
 pip install -e .
-
-# Register the server extension
-jupyter serverextension enable --py jupyterlab-snippets
-
-# Install the dependencies
-jlpm
-
-# Build the TypeScript source
-jlpm build
-
 # Link your development version of the extension with JupyterLab
-jupyter labextension link .
-
-# Rebuild the TypeScript source after making changes
-jlpm build
-
-# Rebuild JupyterLab after making any changes
-jupyter lab build
+jupyter labextension develop . --overwrite
+# Rebuild extension Typescript source after making changes
+jlpm run build
 ```
 
-You can watch the source directory and run JupyterLab in watch mode to watch for changes in the extension's source and automatically rebuild the extension and application.
+You can watch the source directory and run JupyterLab at the same time in different terminals to watch for changes in the extension's source and automatically rebuild the extension.
 
 ```bash
-# Watch the source directory in another terminal tab
-jlpm watch
+# Watch the source directory in one terminal, automatically rebuilding when needed
+jlpm run watch
+# Run JupyterLab in another terminal
+jupyter lab
+```
 
-# Run jupyterlab in watch mode in one terminal tab
-jupyter lab --watch
+With the watch command running, every saved change will immediately be built locally and available in your running JupyterLab. Refresh JupyterLab to load the change in your browser (you may need to wait several seconds for the extension to be rebuilt).
+
+By default, the `jlpm run build` command generates the source maps for this extension to make it easier to debug using the browser dev tools. To also generate source maps for the JupyterLab core extensions, you can run the following command:
+
+```bash
+jupyter lab build --minimize=False
 ```
 
 ### Uninstall
 
 ```bash
 pip uninstall jupyterlab-snippets
-jupyter labextension uninstall jupyterlab-snippets
 ```
