@@ -31,7 +31,10 @@ cd ..
 python -m pip check
 
 # install the labextension
-python -m pip install .
+python -m pip install -e .
+
+# link the extension
+jupyter labextension develop . --overwrite
 
 # verify the environment the extension didn't break anything
 python -m pip check
