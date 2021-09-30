@@ -31,7 +31,7 @@ cd ..
 python -m pip check
 
 # install the labextension
-python -m pip install -e .
+python -m pip install .
 
 # verify the environment the extension didn't break anything
 python -m pip check
