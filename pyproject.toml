@@ -17,5 +17,5 @@ build_cmd = "build:prod"
 npm = ["jlpm"]
 
 [tool.check-manifest]
-ignore = ["*.json", "*.ipynb", "*.gif", "yarn.lock", ".*", "jupyterlab_snippets/labextension/**", "jupyter-boilerplate-converter/**"]
+ignore = [".binder/**", "*.json", "*.ipynb", "*.gif", "yarn.lock", ".*", "jupyterlab_snippets/labextension/**", "jupyter-boilerplate-converter/**"]
 
