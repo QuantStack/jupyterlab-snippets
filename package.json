@@ -1,6 +1,6 @@
 {
   "name": "jupyterlab-snippets",
-  "version": "0.4.0",
+  "version": "0.4.1",
   "description": "Snippets Extension for JupyterLab",
   "keywords": [
     "jupyter",
@@ -89,7 +89,9 @@
     "outputDir": "jupyterlab_snippets/labextension"
   },
   "jupyter-releaser": {
-    "skip": ["check-links"],
+    "skip": [
+      "check-links"
+    ],
     "hooks": {
       "before-build-npm": [
         "python -m pip install jupyterlab~=3.1",
