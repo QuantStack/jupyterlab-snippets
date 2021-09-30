@@ -88,5 +88,13 @@
     "extension": true,
     "outputDir": "jupyterlab_snippets/labextension"
   },
+  "jupyter-releaser": {
+    "hooks": {
+      "before-build-npm": [
+        "python -m pip install jupyterlab~=3.1",
+        "jlpm"
+      ]
+    }
+  },
   "styleModule": "style/index.js"
 }
