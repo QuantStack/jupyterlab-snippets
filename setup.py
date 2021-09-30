@@ -4,56 +4,28 @@ jupyterlab-snippets setup
 import json
 from pathlib import Path
 
-from jupyter_packaging import (
-    create_cmdclass,
-    install_npm,
-    ensure_targets,
-    combine_commands,
-    skip_if_exists
-)
 import setuptools
 
 HERE = Path(__file__).parent.resolve()
 
 # The name of the project
-name = "jupyterlab-snippets"
-package = name.replace("-", "_")
+NAME = "jupyterlab-snippets"
+PY_NAME = NAME.replace('-', '_')
 
-lab_path = (HERE / package / "labextension")
+lab_path = (HERE / PY_NAME / "labextension")
 
 # Representative files that should exist after a successful build
-jstargets = [
+ensured_targets = [
     str(lab_path / "package.json"),
+    str(lab_path / "static/style.js")
 ]
 
-package_data_spec = {
-    package: ["*"],
-}
-
-labext_name = "jupyterlab-snippets"
-
 data_files_spec = [
-    ("share/jupyter/labextensions/%s" % labext_name, str(lab_path), "**"),
-    ("share/jupyter/labextensions/%s" % labext_name, str(HERE), "install.json"),
+    ("share/jupyter/labextensions/%s" % NAME, str(lab_path), "**"),
+    ("share/jupyter/labextensions/%s" % NAME, str(HERE), "install.json"),
     ("etc/jupyter/jupyter_notebook_config.d", "jupyter-config/jupyter_notebook_config.d", "jupyterlab_snippets.json"),
     ("etc/jupyter/jupyter_server_config.d", "jupyter-config/jupyter_server_config.d", "jupyterlab_snippets.json"),
 ]
-
-cmdclass = create_cmdclass("jsdeps",
-    package_data_spec=package_data_spec,
-    data_files_spec=data_files_spec
-)
-
-js_command = combine_commands(
-    install_npm(HERE, build_cmd="build:prod", npm=["jlpm"]),
-    ensure_targets(jstargets),
-)
-
-is_repo = (HERE / ".git").exists()
-if is_repo:
-    cmdclass["jsdeps"] = js_command
-else:
-    cmdclass["jsdeps"] = skip_if_exists(jstargets, js_command)
 
 long_description = (HERE / "README.md").read_text()
 
@@ -61,7 +33,7 @@ long_description = (HERE / "README.md").read_text()
 pkg_json = json.loads((HERE / "package.json").read_bytes())
 
 setup_args = dict(
-    name=name,
+    name=NAME,
     version=pkg_json["version"],
     url=pkg_json["homepage"],
     author=pkg_json["author"]["name"],
@@ -70,7 +42,6 @@ setup_args = dict(
     license=pkg_json["license"],
     long_description=long_description,
     long_description_content_type="text/markdown",
-    cmdclass=cmdclass,
     packages=setuptools.find_packages(),
     install_requires=[
         "jupyterlab~=3.0",
@@ -89,9 +60,26 @@ setup_args = dict(
         "Programming Language :: Python :: 3.8",
         "Programming Language :: Python :: 3.9",
         "Framework :: Jupyter",
+        "Framework :: Jupyter :: JupyterLab",
+        "Framework :: Jupyter :: JupyterLab :: 3",
+        "Framework :: Jupyter :: JupyterLab :: Extensions",
+        "Framework :: Jupyter :: JupyterLab :: Extensions :: Prebuilt",
     ],
 )
 
+try:
+    from jupyter_packaging import (
+        wrap_installers,
+        npm_builder,
+        get_data_files
+    )
+    post_develop = npm_builder(
+        build_cmd="build:prod", source_dir="src", build_dir=lab_path
+    )
+    setup_args['cmdclass'] = wrap_installers(post_develop=post_develop, ensured_targets=ensured_targets)
+    setup_args['data_files'] = get_data_files(data_files_spec)
+except ImportError as e:
+    pass
 
 if __name__ == "__main__":
     setuptools.setup(**setup_args)
